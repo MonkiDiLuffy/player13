@@ -87,14 +87,26 @@ npm run auth
 
 Your browser will open for Spotify login. Accept the certificate warning (local HTTPS) and authorize the app. Tokens are saved to `.spotify-tokens.json`.
 
-### 4. Launch 🎶
+### 4. Install globally (optional)
+
+Run `play13` from anywhere on your system:
+
+```bash
+npm link
+```
+
+This adds the `play13` command to your PATH. Your `.env` and tokens stay in the project folder — you only need to link once after cloning.
+
+### 5. Launch 🎶
 
 ```bash
 # Full player (Spotify + offline fallback)
-npm start
+play13
+# or: npm start
 
 # Offline / local library only
-npm run offline
+play13 --offline
+# or: npm run offline
 ```
 
 If Spotify credentials are missing or auth fails, Player13 automatically falls back to **offline mode**.
@@ -164,6 +176,7 @@ Files are scanned recursively from `MUSIC_FOLDER`. Track metadata is parsed from
 
 | Command | Description |
 |---------|-------------|
+| `play13` | Launch player globally (after `npm link`) |
 | `npm start` | Launch player (Spotify preferred, offline fallback) |
 | `npm run offline` | Launch in offline/local mode only |
 | `npm run auth` | Authenticate with Spotify (one-time setup) |

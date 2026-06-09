@@ -21,7 +21,7 @@ async function main() {
     validateConfig();
     console.log('Authenticating with Spotify...');
     await authenticate();
-    console.log('Success! Tokens saved. Run `npm start` to launch the player.');
+    console.log('Success! Tokens saved. Run `play13` to launch the player.');
     return;
   }
 

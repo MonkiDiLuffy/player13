@@ -176,11 +176,24 @@ class MpvEngine {
       this.getProperty('volume'),
     ]);
 
+    let bitrate = null;
+    try {
+      bitrate = await this.getProperty('audio-bitrate');
+    } catch {
+      // not always available
+    }
+
+    let audioAmplitude = 1;
+    if (!pause && typeof bitrate === 'number' && bitrate > 0) {
+      audioAmplitude = Math.min(1.35, 0.55 + bitrate / 280_000);
+    }
+
     return {
       playing: !pause,
       progressMs: Math.max(0, (timePos || 0) * 1000),
       durationMs: Math.max(0, (duration || 0) * 1000),
       volume: Math.round(volume ?? 80),
+      audioAmplitude,
     };
   }
 
@@ -502,6 +515,7 @@ export class OfflinePlayer {
       },
       progressMs: state.progressMs,
       device: { name: 'Local files', volume: state.volume },
+      audioAmplitude: state.audioAmplitude ?? 1,
     };
   }
 
