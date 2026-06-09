@@ -5,6 +5,7 @@ import { authenticate, getAuthenticatedApi } from './auth.js';
 import { SpotifyPlayer } from './spotify.js';
 import { OfflinePlayer } from './offline.js';
 import { createPlayerUI } from './ui.js';
+import { createPlayerGUI } from './gui.js';
 
 async function createSpotifyPlayer() {
   validateConfig();
@@ -14,6 +15,7 @@ async function createSpotifyPlayer() {
 
 async function main() {
   const authOnly = process.argv.includes('--auth-only');
+  const guiMode = process.argv.includes('--gui');
   const offlineOnly =
     process.argv.includes('--offline') || process.argv.includes('--offline-mode');
 
@@ -37,10 +39,12 @@ async function main() {
     }
   };
 
+  const launch = guiMode ? createPlayerGUI : createPlayerUI;
+
   if (!offlineOnly) {
     try {
       const spotifyPlayer = await createSpotifyPlayer();
-      createPlayerUI({
+      launch({
         getSpotifyPlayer: async () => spotifyPlayer,
         offlinePlayer,
         initialMode: 'online',
@@ -51,7 +55,7 @@ async function main() {
     }
   }
 
-  createPlayerUI({
+  launch({
     getSpotifyPlayer,
     offlinePlayer,
     initialMode: 'offline',

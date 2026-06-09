@@ -10,7 +10,9 @@
   },
   "scripts": {
     "start": "node src/index.js",
+    "gui": "node src/index.js --gui",
     "offline": "node src/index.js --offline",
+    "gui-offline": "node src/index.js --gui --offline",
     "auth": "node src/index.js --auth-only"
   },
   "keywords": [
@@ -24,8 +26,10 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@sigmasd/gtk": "npm:@jsr/sigmasd__gtk@^0.65.0",
     "blessed": "^0.1.81",
     "dotenv": "^17.4.2",
+    "koffi": "^2.16.2",
     "open": "^11.0.0",
     "selfsigned": "^5.5.0",
     "spotify-web-api-node": "^5.0.2",
