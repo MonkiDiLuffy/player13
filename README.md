@@ -207,4 +207,6 @@ MIT
 
 ---
 
-Made with 💜 for terminal music lovers.
+Made with 💜 for LINUX terminal lovers.
+
+XIII - Kuro Neko
