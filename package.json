@@ -1,0 +1,32 @@
+{
+  "name": "player13",
+  "version": "1.0.0",
+  "description": "Terminal UI music player powered by the Spotify API",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "player13": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "offline": "node src/index.js --offline",
+    "auth": "node src/index.js --auth-only"
+  },
+  "keywords": [
+    "spotify",
+    "tui",
+    "music",
+    "terminal"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "dotenv": "^17.4.2",
+    "open": "^11.0.0",
+    "selfsigned": "^5.5.0",
+    "spotify-web-api-node": "^5.0.2"
+  }
+}
